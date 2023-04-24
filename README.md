@@ -51,6 +51,8 @@ rm -rf /usr/local/go && tar -C /usr/local -xzf go1.20.3.linux-amd64.tar.gz
 修改 $HOME/.profile 文件追加如下命令
 ```bash
 export PATH=$PATH:/usr/local/go
+export GO111MODULE=on
+export GOPROXY=https://goproxy.cn
 ```
 
 ### 安装 golang-migrate
@@ -130,4 +132,54 @@ make migrateup
 
 # 向下迁移
 make migratedown
+```
+
+## 四、根据SOL生成CRUD代码
+
+- Create - 在数据库中插入新记录
+- Read - 在数据库中选择或搜索记录
+- Update - 更改数据库中记录的某些字段
+- Delete - 从数据库中删除记录
+
+### database/sql
+
+- 优点是 速度快并且代码简单(Straightforward)
+- 缺点是 必须手动将SQL字段映射到变量上，容易出错。
+
+### gorm
+
+- 已经封装好CRUD的代码，只需声明模型。
+- 必须学习如何使用gorm提供的函数编写查询。
+- 当流量很高(high load)时运行很慢。
+
+### sqlx
+
+- 查询几乎和标准库一样快以及容易使用
+- 字段映射是通过查询文本或结构标签完成的
+
+### sqlc
+
+- 速度快且容易使用
+- 自动生成代码
+- 缺点是只完全支持 PostgreSQL, MySQL处于实验阶段
+
+安装 `sqlc`
+```bash
+sudo snap install sqlc
+```
+
+初始化 `sqlc`
+```bash
+sqlc init
+```
+
+生成代码
+```bash
+sqlc generate
+```
+
+初始化项目
+```bash
+go mod init github.com/grayjunzi/backend-master-class-golang
+go mod tidy
 ```
