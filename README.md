@@ -183,3 +183,11 @@ sqlc generate
 go mod init github.com/grayjunzi/backend-master-class-golang
 go mod tidy
 ```
+
+## 五、数据库增删改查单元测试
+
+安装依赖包 
+```bash
+go get github.com/lib/pq
+go get github.com/stretchr/testify
+```
