@@ -212,3 +212,7 @@ go get github.com/stretchr/testify
 - Consitency(一致性) - 数据库状态在事务执行之后必须有效。必须满足所有约束。
 - Isolation(隔离性) - 并发事务不能相互影响。
 - Durability(持久性) - 成功事务写入的数据必须记录在持久性存储中。
+
+## 七、数据库事务锁
+
+### 处理死锁
