@@ -216,3 +216,6 @@ go get github.com/stretchr/testify
 ## 七、数据库事务锁
 
 ### 处理死锁
+
+## 八、避免数据库死锁
+
