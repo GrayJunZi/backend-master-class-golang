@@ -219,3 +219,70 @@ go get github.com/stretchr/testify
 
 ## 八、避免数据库死锁
 
+## 九、事务隔离级别
+
+### 读现象(Read Phenomena)
+
+- `脏读(Dirty Read)` - 事务读取其他并发未提交事务写入的数据。
+- `不可重复读(Non Repeatable Read)` - 一个事务两次读取同一行并看到不同的值，因为它已被其他已提交的事务修改
+- `幻读(Phantom Read)` - 事务重新执行用于查找满足条件的行的查询，并且由于其他已提交事务的更改而看到一组不同的行。
+- `序列化异常(Serialization Anomaly)` - 一组并发提交的事务的结果是不可能实现的，如果我们试图以任何顺序依次运行它们而不重叠
+
+### 标准隔离级别
+
+American National Standards Institute - ANSI
+
+1. 读取未提交 - 可以看到未提交事务写入的数据。
+2. 读取已提交 - 只看到已提交事务写入的数据。
+3. 可重复读取 - 相同的读取查询总是返回相同的结果。
+4. 可序列化的 - 如果按某种顺序而不是并发地执行事务则可以实现相同的结果。
+
+### MySQL
+
+查看事务隔离级别
+```sql
+select @@transaction_isolation;
+```
+
+查看全局事务隔离界别
+```sql
+select @@global.transaction_isolation;
+```
+
+修改事务隔离级别
+```sql
+set session transaction isolation level read uncommitted;
+```
+
+开启事务
+```sql
+start transaction;
+```
+
+提交事务
+```sql
+commit;
+```
+
+回滚事务
+```sq;
+rollback;
+```
+
+### Postgres
+
+查看事务隔离级别
+```bash
+show transaction isolation level;
+```
+
+修改事务隔离级别
+```bash
+set transaction isolation level read uncommitted;
+```
+
+
+### 重试机制
+
+处理可能存在错误、超时或死锁。
+
