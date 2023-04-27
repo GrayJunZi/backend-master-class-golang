@@ -286,3 +286,93 @@ set transaction isolation level read uncommitted;
 
 处理可能存在错误、超时或死锁。
 
+## 十、Github Actions
+
+### Workflow
+
+- 是一个自动过程。
+- 由一个以上的Job组成。
+- 由事件触发、计划或手动。
+- 将 `.yml` 添加到存储库。
+
+```yml
+name: build-and-test
+
+on:
+  push:
+    branches: [ master ]
+  schedule:
+    - cron: '*/15 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+```
+
+### Runner
+
+- 是运行Job的服务
+- 一次运行一个Job。
+- Github托管或自托管。
+- 向Github报告进度、日志和结果。
+
+```yml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Build server
+        run: ./build_server.sh
+    test:
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - run: ./test_server.sh
+```
+
+### Job
+
+- 是在同一个Runner上执行的一组步骤。
+- 正常作业并行运行。
+- 连续运行相关作业。
+
+```yml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Build server
+        run: ./build_server.sh
+    test:
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - run: ./test_server.sh
+```
+
+### Step
+
+- 是一个单独的任务。
+- 在作业中连续运行。
+- 包含多个 Actions
+
+### Action
+
+- 是一个独立的命令。
+- 在一个步骤内连续运行。
+- 可重复使用。
+
+```yml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Build server
+        run: ./build_server.sh
+```
