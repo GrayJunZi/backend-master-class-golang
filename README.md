@@ -376,3 +376,29 @@ jobs:
       - name: Build server
         run: ./build_server.sh
 ```
+
+## 十一、使用 Gin 实现 HTTP API
+
+### 流行的Web框架
+
+- Gin
+- Beego
+- Echo
+- Revel
+- Martini
+- Fiber
+- Buffalo
+
+### 流行 HTTP Router 库
+
+- FastHttp
+- Gorilla Mux
+- HttpRouter
+- Chi
+
+
+### 安装 `gin`
+
+```bash
+go get -u github.com/gin-gonic/gin
+```
