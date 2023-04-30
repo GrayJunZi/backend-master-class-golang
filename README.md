@@ -471,3 +471,5 @@ mockgen -help
 ```bash
 mockgen --package mockdb -destination db/mock/store.go github.com/grayjunzi/backend-master-class-golang/db/sqlc Store
 ```
+
+## 十四、自定义参数验证其
