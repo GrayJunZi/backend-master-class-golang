@@ -427,3 +427,47 @@ go get -u github.com/gin-gonic/gin
 ```bash
 go get github.com/spf13/viper
 ```
+
+## 十三、用于测试Go中的 HTTP API 并实现100%覆盖的MockDB
+
+### 为什么使用 mock 数据库？
+
+- 独立测试 - 隔离测试数据以避免冲突。
+- 测试更快 - 减少与数据库对话的大量时间。
+- 100%覆盖率 - 轻松设置边缘案例:意外错误
+
+首先，它可以帮助我们更轻松的编写独立的测试。
+其次，我们的测试将运行的更快。不必花时间与数据库进行交互并等待返回结果。所有的操作都将再内存中执行，并在同一进程中执行。
+第三个也是非常重要的原因是：它允许我们编写实现100%覆盖率的测试。
+
+### 用模拟数据库测试我们的API是否足够好?
+
+是的!我们真正的DB存储已经过测试。
+
+模拟数据库和真实数据库应该实现相同的接口。
+
+### 如何模拟数据？
+
+- 使用假数据库 - 内存(Memory), 实现一个假版本的数据库:在内存中存储数据。 
+- 使用数据库存根 - GoMock, 生成和构建返回硬编码值的存根。
+
+### 使用 gomock
+
+安装 `mockgen`
+```bash
+go get github.com/golang/mock/mockgen@v1.6.0
+```
+
+查看 `mockgen` 路径
+```bash
+which mockgen
+```
+
+查看 `mockgen` 帮助
+```bash
+mockgen -help
+```
+
+```bash
+mockgen --package mockdb -destination db/mock/store.go github.com/grayjunzi/backend-master-class-golang/db/sqlc Store
+```
