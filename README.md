@@ -472,4 +472,12 @@ mockgen -help
 mockgen --package mockdb -destination db/mock/store.go github.com/grayjunzi/backend-master-class-golang/db/sqlc Store
 ```
 
-## 十四、自定义参数验证其
+## 十四、自定义参数验证
+
+## 十五、添加用户表并添加外键约束
+
+### 创建一个新的迁移
+
+```bash
+migrate create -ext sql -dir db/migration -seq add_users
+```
