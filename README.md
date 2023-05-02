@@ -481,3 +481,6 @@ mockgen --package mockdb -destination db/mock/store.go github.com/grayjunzi/back
 ```bash
 migrate create -ext sql -dir db/migration -seq add_users
 ```
+
+## 十六、处理数据库错误
+
