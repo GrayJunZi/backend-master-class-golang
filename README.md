@@ -568,4 +568,21 @@ Paragon Initiative Enterprises 是PASETO的发明者
 
 - Version: v2
 - Purpose: public
-- Payload: 
+- Payload
+
+## 二十、创建和验证JWT与PASETO
+
+安装 `uuid`
+```bash
+go get github.com/google/uuid
+```
+
+安装 `jwt`
+```bash
+go get github.com/dgrijalva/jwt-go
+```
+
+安装 `paseto`
+```bash
+go get github.com/o1egl/paseto
+```
