@@ -495,3 +495,77 @@ migrate create -ext sql -dir db/migration -seq add_users
 在这个哈希字符串中，有四部分组成，第一部分是哈希算法标识符，第二部分是COST(2^*轮密钥扩展)，第三部分是长度16字节或128位的盐，它使用base64格式编码，这将生成22个字符的字符串，最后一部分是24字节的哈希值，编码位31个字符。四个部分连接在一起形成一个哈希字符串。
 
 ## 十八、编写更强的单元测试
+
+## 十九、基于Token的身份认证
+
+### 为什么 `PASETO` 比 `JWT` 更好？
+
+JWT(Json web Token)是使用最广泛的一种，但 `JWT` 一些安全问题，主要是因为它设计的标准很差，使用`PASETO` 有望为应用程序带来更好的安全性。
+
+### Json Web Token (JWT)
+
+它是一个base64编码的字符串，由三部分组成，用 `.` 分隔，第一部分是 `token` 的 `header` 用于签署令牌的算法和类型，第二部分是存储有关登录用户的信息 例如 id 用户名 以及令牌过期的时间戳，第三部分用于验证签名。
+
+### JWT 签名算法
+
+- 对称加密算法(Symmetric digital signature algorithm) 
+  - 使用相同的密钥(secret key)来签署和验证令牌。
+  - 该算法适用与本地适用，对于内部服务可以共享密钥。
+  - HS256, HS384, HS512
+    - HS256 = HMAC + SHA256 的组合
+    - HMAC 代表基于哈希的消息认证代码(Hash-based Message Authentication Code)
+    - SHA 是安全散列算法(Secure Hash Algorithm)
+    - 256/384/512 是输出的位数。
+
+- 非对称加密算法(Asymmetric digital signature algorithm)
+  - 该算法由一对密钥而不是一个单独的密钥，私钥(private key)用于对令牌进行签名，公钥(public key)用于验证签名。
+  - 该算法可轻松地与任何外部第三方服务共享我们的公钥，不用担心泄漏私钥。
+  - RS256, RS384, RS512 | PS256, PS384, PS512 | ES256, ES384, ES512
+    - RS256 = RSA PKCSv1.5 + SHA256 的组合算法，PKCS(Public-Key Cryptography Standards)
+    - PS256 = RSA PSS + SHA256 的组合，PSS(Probabilistic Signature Scheme)
+    - ES256 = ECDSA + SHA256 的组合，ECDSA(Elliptic Curve Digital Signature Algorithm)
+  
+### JWT 的问题
+
+- 弱签名算法(Weak algorithms)
+  - JWT给了开发者太多的算法选择。
+  - 包括易受攻击的算法，例如 RSA PKCSv1.5 容易受到 padding oracle 攻击，ECDSA 容易受到无效曲线攻击(invalid-curve attach)
+
+- 伪造(Trivial Forgery)
+  - 将 token 的 header 中 `alg` 设置为 none。
+  - 将 token 中 header 的 `alg` 设置为 `HS256` 进行验证。
+
+### Platform-Agnostic SEcurity TOkens (PASETO)
+
+PASETo 是最成功的设计之一，被社区广泛接受为JWT的最佳安全替代方案。
+
+- 提供开箱即用的强大签名算法。
+- 开发人员不必再选择算法。
+- 只需选择PASETO版本。
+- 每个版本都已经实现了一个强大的密码套件(cipher suite)。
+- 最多只有两个最新版本的PASETO处于活动状态。
+
+PASETO 它只对payload进行base64编码并对令牌进行签名，实际上使用密钥对令牌中的所有数据进行加密和验证。使用具有关联数据(AEAD)算法的强身份验证加密。PASETO版本1中使用的AEAD算法是带有 ASE256 CTR + HMAC SHA384。
+对于公共情况，有外部服务需要验证token，我们必须使用非对称加密算法，只对它进行base64编码，并使用私钥数字签名对内容进行签名。PASETO版本1中选择的非对称加密算法是带有RSA PSS + SHA384 算法。
+
+PASETO v2 对于本地对称密钥场景它使用 `XChaCha20-Poly1305` 算法，对于公共非对称密钥方案，使用带有曲线的 `Ed25519(EdDSA + Curve25519)` 算法。
+
+### PASETO 结构
+
+适用于本地的令牌有四个主要部分用 `.` 分隔，第一部分是 PASETO的版本，第二部分是token的用途，表示是用于本地场景还是公共场景，第三部分是主要内容，即令牌的有效载荷(payload)数据，它是加密的，解密之后有三个较小的部分，
+第一个小部分中具有消息和过期时间，其次是在加密和消息认证过程中使用的 nonce 的值，最后是消息认证标签 验证加密消息及其关联的未加密数据。第四部分是footer，可以在footer中存储任何公共信息，因为它不会像有效负载正文那样被加密，而是只进行base64编码。其中footer部分是可选的，可以拥有没有footer的PASETO令牌。
+
+Paragon Initiative Enterprises 是PASETO的发明者
+
+- Version: v2
+- Purpose: local
+- Payload
+  - Body
+  - Nonce
+  - Authentication tag
+
+适用于公共的令牌有三个部分，用 `.` 分隔，第一个部分是PASETO的版本，第二部分是token的用途，第三部分是有效载荷数据不会被加密而是被base64编码，其中一部分是令牌的签名由数字签名算法使用私钥创建，服务器将使用其配对的公钥来验证签名的真实性。
+
+- Version: v2
+- Purpose: public
+- Payload: 
