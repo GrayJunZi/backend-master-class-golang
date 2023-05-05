@@ -657,3 +657,6 @@ docker run --name simplebank --network simplebank-network -p 8080:8080 -e GIN_MO
 
 ## 二十五、使用 Docker Compose
 
+## 二十六、创建免费AWS帐号
+
+略过
