@@ -719,3 +719,29 @@ docker run --name simplebank --network simplebank-network -p 8080:8080 -e GIN_MO
 
 ### 如何管理用户会话？
 
+## 三十八、根据DBML代码生成数据库文档
+
+
+- 使用 [dbdocs.io](https://dbdocs.io) 生成数据库文档。
+
+全局安装 `dbdocs`
+```bash
+npm install -g dbdocs
+```
+
+查看 `dbdocs` 版本
+```bash
+dbdocs
+```
+
+登录 `dbdocs`
+```bash
+dbdocs login
+```
+
+构建 `dbml`
+```bash
+dbdocs build doc/db.dbml
+```
+
+vscode安装 `vscode-dbml`
