@@ -709,3 +709,7 @@ kubectl version --client
 ## 三十四、在Kubernetes集群中设置Ingress
 
 略过
+
+## 三十五、k8s中的自动和免费TLS证书
+
+略过
