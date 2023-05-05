@@ -670,3 +670,23 @@ docker run --name simplebank --network simplebank-network -p 8080:8080 -e GIN_MO
 略过
 
 ## 二十九、使用AWS Secrets Manager管理密钥
+
+略过
+
+## 三十、Kubernetes架构以及在AWS中创建EKS集群
+
+### 什么是 Kubernetes？
+
+- 一个开源容器编排引擎。
+- 用于自动部署、扩展和管理容器化应用程序。
+
+### Kubernetes的组件
+
+- Worker Node - 运行容器化应用程序的工作机器或节点。每个Worker节点中，都有一个Kubelet代理。
+  - Kubelet agent:确保容器在pods内运行
+  - 容器运行时: Kubernetes支持多种容器，Docker、Containerd、CRI-O。
+  - Kube-proxy: 维护网络规则，允许与pods通信
+
+- Master Node - 它的职责是管理集群的工作节点和Pod。
+
+> 第二部分是 Control Plane，它在主节点上运行
