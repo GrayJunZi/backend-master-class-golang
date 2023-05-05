@@ -714,3 +714,8 @@ docker run --name simplebank --network simplebank-network -p 8080:8080 -e GIN_MO
 ## 三十六、使用Github Action自动部署到Kubentes中
 
 略过
+
+## 三十七、使用Refresh Token管理会话
+
+### 如何管理用户会话？
+
