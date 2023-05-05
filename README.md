@@ -690,3 +690,10 @@ docker run --name simplebank --network simplebank-network -p 8080:8080 -e GIN_MO
 - Master Node - 它的职责是管理集群的工作节点和Pod。
 
 > 第二部分是 Control Plane，它在主节点上运行
+
+## 三十一、使用Kubectl 与 K9s连接AWS中的Kubernetes集群
+
+查看kubernetes版本
+```bash
+kubectl version --client
+```
