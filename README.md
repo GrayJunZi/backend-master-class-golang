@@ -611,3 +611,46 @@ git push origin ft/docker
 ```bash
 docker build -t simplebank:latest .
 ```
+
+## 二十四、连接同一个docker网络中的容器
+
+运行容器
+```bash
+docker run --name simplebank -p 8080:8080 -e GIN_MODE=release simplebank:latest
+```
+
+移除容器
+```bash
+docker rm simplebank
+```
+
+移除镜像
+```bash
+docker rmi simplebank
+```
+
+查看容器的网络设置
+```bash
+docker container inspect postgres12
+```
+
+查看网络
+```bash
+docker network ls
+docker network inspect container
+```
+
+创建网络
+```bash
+docker network create simplbank-network
+```
+
+连接网络
+```bash
+docket network connect simplebank-network postgres12
+```
+
+运行容器
+```bash
+docker run --name simplebank --network simplebank-network -p 8080:8080 -e GIN_MODE=release simplebank:latest
+```
