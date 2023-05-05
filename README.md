@@ -693,10 +693,7 @@ docker run --name simplebank --network simplebank-network -p 8080:8080 -e GIN_MO
 
 ## 三十一、使用Kubectl 与 K9s连接AWS中的Kubernetes集群
 
-查看kubernetes版本
-```bash
-kubectl version --client
-```
+略过
 
 ## 三十二、在AWS EKS上部署web app到Kubeneters集群中
 
@@ -711,5 +708,9 @@ kubectl version --client
 略过
 
 ## 三十五、k8s中的自动和免费TLS证书
+
+略过
+
+## 三十六、使用Github Action自动部署到Kubentes中
 
 略过
