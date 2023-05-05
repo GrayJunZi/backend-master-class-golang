@@ -664,3 +664,7 @@ docker run --name simplebank --network simplebank-network -p 8080:8080 -e GIN_MO
 ## 二十七、使用Github Actions自动构建推送镜像到AWS ECR中
 
 略过
+
+## 二十八、在AWS RDS中创建生产数据库
+
+掠过
