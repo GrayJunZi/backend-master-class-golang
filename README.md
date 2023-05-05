@@ -668,3 +668,5 @@ docker run --name simplebank --network simplebank-network -p 8080:8080 -e GIN_MO
 ## 二十八、在AWS RDS中创建生产数据库
 
 略过
+
+## 二十九、使用AWS Secrets Manager管理密钥
