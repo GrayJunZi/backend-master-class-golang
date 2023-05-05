@@ -591,6 +591,23 @@ go get github.com/o1egl/paseto
 
 ## 二十二、实现认证中间件和鉴权规则
 
-### 什么是中间件？
+## 二十三、构建最小的Docker映像
 
-- 
+### 分支
+
+创建新分支
+```bash
+git checkout -b ft/docker
+```
+
+提交代码
+```bash
+git push origin ft/docker
+```
+
+### Docker
+
+构建镜像
+```bash
+docker build -t simplebank:latest .
+```
