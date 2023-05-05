@@ -701,3 +701,7 @@ kubectl version --client
 ## 三十二、在AWS EKS上部署web app到Kubeneters集群中
 
 略过
+
+## 三十三、注册一个域名并建立 A-record
+
+略过
