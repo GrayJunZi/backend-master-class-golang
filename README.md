@@ -705,3 +705,7 @@ kubectl version --client
 ## 三十三、注册一个域名并建立 A-record
 
 略过
+
+## 三十四、在Kubernetes集群中设置Ingress
+
+略过
