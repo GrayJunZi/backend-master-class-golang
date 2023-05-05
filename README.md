@@ -667,4 +667,4 @@ docker run --name simplebank --network simplebank-network -p 8080:8080 -e GIN_MO
 
 ## 二十八、在AWS RDS中创建生产数据库
 
-掠过
+略过
