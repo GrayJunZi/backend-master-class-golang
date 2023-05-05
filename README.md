@@ -697,3 +697,7 @@ docker run --name simplebank --network simplebank-network -p 8080:8080 -e GIN_MO
 ```bash
 kubectl version --client
 ```
+
+## 三十二、在AWS EKS上部署web app到Kubeneters集群中
+
+略过
