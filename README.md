@@ -746,7 +746,7 @@ dbdocs build doc/db.dbml
 
 vscode安装 `vscode-dbml`
 
-## 三十九、GRPC
+## 三十九、GRPC介绍
 
 ### 什么是gRPC？
 
@@ -788,3 +788,46 @@ vscode安装 `vscode-dbml`
   - 进程内(in-process)翻译，意味着网关可以直接在代码中调用gRPC处理程序而无需通过网络上的任何额外跳跃点，但是它仅适用于一元gRPC。
   - 将HTTP网关作为单独的代理服务器运行，HTTP请求将被翻译并通过网络调用转发到gRPC服务器。
 - 编写一次代码，同时满足gRPC和HTTP请求
+
+## 四十、根据protobuf生成Go代码
+
+### gRPC是如何工作的?
+
+1. 定义API和数据结构
+2. 生成gRPC存根
+3. 实现服务
+4. 客户端使用
+
+### gRPC使用
+
+安装 protobuf
+```bash
+apt install -y protobuf-compiler
+```
+
+查看版本
+```bash
+protoc --version
+```
+
+安装go插件
+```bash
+go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
+```
+
+查看版本
+```bash
+protoc-gen-go --version
+protoc-gen-go-gprc --version
+```
+
+安装vscode插件
+```bash
+vscode-proto3
+```
+
+修复依赖
+```
+go mod tidy
+```
