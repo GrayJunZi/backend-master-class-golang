@@ -831,3 +831,36 @@ vscode-proto3
 ```
 go mod tidy
 ```
+
+## 四十一、运行gRPC服务以及调用API
+
+1. 使用生成的代码运行gRPC服务器
+2. 使用Evans客户端连接到gRPC服务器
+
+
+### Evans 使用
+
+安装 `evans`
+```bash
+go install github.com/ktr0731/evans@latest
+```
+
+使用 `evans` 连接 gRPC 服务
+```bash
+evans --host localhost --port 9090 -r repl
+```
+
+查看所有服务
+```bash
+show service
+```
+
+调用服务
+```bash
+call CreateUser
+```
+
+退出 `evans` 控制台
+```bash
+exit
+```
