@@ -920,3 +920,11 @@ git clone https://github.com/swagger-api/swagger-ui
 ```bash
 cp -r dist/* ../backend-master-class-golang/doc/swagger
 ```
+
+## 四十六、在Go二进制文件中嵌入前端代码
+
+`Statik` 允许将静态文件目录嵌入到Go可执行二进制文件中。
+
+```bash
+go install github.com/rakyll/statik
+```
