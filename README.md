@@ -931,3 +931,9 @@ go install github.com/rakyll/statik
 
 ## 四十七、GRPC参数验证
 
+## 四十八、运行数据库迁移
+
+安装 `migrate`
+```bash
+go get github.com/golang-migrate/migrate/v4
+```
