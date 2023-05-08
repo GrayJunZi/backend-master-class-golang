@@ -867,5 +867,28 @@ exit
 
 ## 四十二、实现创建和登录的gRPC接口
 
+## 四十三、gRPC网关(Gateway)
 
+编写一次代码，同时支持gRPC与HTTP服务。
 
+安装依赖
+```bash
+go install \
+    github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway \
+    github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2 \
+    google.golang.org/protobuf/cmd/protoc-gen-go \
+    google.golang.org/grpc/cmd/protoc-gen-go-grpc
+```
+
+下载 `googleapis`
+```bash
+git clone https://github.com/googleapis/googleapis.git
+```
+
+复制文件
+```bash
+cp google/api/annotations.proto ../backend-master-class-golang/proto/google/api/annotations.proto
+cp google/api/field_behavior.proto ../backend-master-class-golang/proto/google/api
+cp google/api/http.proto ../backend-master-class-golang/proto/google/api
+cp google/api/httpbody.proto ../backend-master-class-golang/proto/google/api
+```
