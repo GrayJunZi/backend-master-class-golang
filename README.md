@@ -896,3 +896,27 @@ cp google/api/httpbody.proto ../backend-master-class-golang/proto/google/api
 ## 四十四、使用gRPC元数据(metadata)
 
 元数据只是有关特定RPC调用的一些信息，以键值对的形式出现，它允许客户端提供一些与服务器调用相关的额外信息。
+
+## 四十五、自动生成和提供Swagger文档
+
+下载 `gprc-gateway`
+```bash
+git clone https://github.com/grpc-ecosystem/grpc-gateway
+```
+
+复制文件
+```bash
+mkdir -p proto/protoc-gen-openapiv2/options
+cp protoc-gen-openapiv2/options/*.proto ../backend-master-class-golang/proto/protoc-gen-openapiv2/options/
+```
+
+
+下载 `swagger-ui`
+```bash
+git clone https://github.com/swagger-api/swagger-ui
+```
+
+复制文件
+```bash
+cp -r dist/* ../backend-master-class-golang/doc/swagger
+```
