@@ -928,3 +928,6 @@ cp -r dist/* ../backend-master-class-golang/doc/swagger
 ```bash
 go install github.com/rakyll/statik
 ```
+
+## 四十七、GRPC参数验证
+
