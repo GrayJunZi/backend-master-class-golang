@@ -892,3 +892,7 @@ cp google/api/field_behavior.proto ../backend-master-class-golang/proto/google/a
 cp google/api/http.proto ../backend-master-class-golang/proto/google/api
 cp google/api/httpbody.proto ../backend-master-class-golang/proto/google/api
 ```
+
+## 四十四、使用gRPC元数据(metadata)
+
+元数据只是有关特定RPC调用的一些信息，以键值对的形式出现，它允许客户端提供一些与服务器调用相关的额外信息。
