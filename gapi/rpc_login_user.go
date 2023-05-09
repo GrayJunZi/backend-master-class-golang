@@ -3,6 +3,9 @@ package gapi
 import (
 	"context"
 	"database/sql"
+	"fmt"
+	"strconv"
+	"time"
 
 	db "github.com/grayjunzi/backend-master-class-golang/db/sqlc"
 	"github.com/grayjunzi/backend-master-class-golang/pb"
@@ -19,6 +22,7 @@ func (server *Server) LoginUser(ctx context.Context, req *pb.LoginUserRequest) (
 	if violations != nil {
 		return nil, invalidArgumentError(violations)
 	}
+
 	user, err := server.store.GetUser(ctx, req.GetUsername())
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -54,7 +58,7 @@ func (server *Server) LoginUser(ctx context.Context, req *pb.LoginUserRequest) (
 		Username:     user.Username,
 		RefreshToken: refreshToken,
 		UserAgent:    mtdt.UserAgent,
-		ClientIp:     mtdt.ClientIP,
+		ClientIp:     fmt.Sprintf("%s:%s", mtdt.ClientIP, strconv.Itoa(int(time.Now().UnixNano()))),
 		IsBlocked:    false,
 		ExpiresAt:    refreshPayload.ExpiredAt,
 	})
