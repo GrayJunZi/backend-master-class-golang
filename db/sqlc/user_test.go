@@ -142,11 +142,11 @@ func TestUpdateUserAllFields(t *testing.T) {
 	})
 
 	require.NoError(t, err)
-	require.NotEqual(t, oldUser.Username, updatedUser.Username)
 	require.NotEqual(t, oldUser.FullName, updatedUser.FullName)
 	require.NotEqual(t, oldUser.Email, updatedUser.Email)
 	require.NotEqual(t, oldUser.HashedPassword, updatedUser.HashedPassword)
 
+	require.Equal(t, oldUser.Username, updatedUser.Username)
 	require.Equal(t, newFullName, updatedUser.FullName)
 	require.Equal(t, newEmail, updatedUser.Email)
 	require.Equal(t, newHashedPassword, updatedUser.HashedPassword)
