@@ -943,3 +943,10 @@ go get github.com/golang-migrate/migrate/v4
 ## 五十、gRPC可选参数
 
 ## 五十一、gRPC添加身份认证
+
+## 五十二、gRPC结构化日志
+
+安装 `zero-logger`
+```bash
+go get -u github.com/rs/zerolog/log
+```
