@@ -1011,3 +1011,5 @@ go get github.com/jordan-wright/email
 ```bash
 migrate create -ext sql -dir db/migration -seq add_verify_emails
 ```
+
+## 六十二、实现邮箱验证
