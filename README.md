@@ -991,3 +991,6 @@ docker exec -it redis redis-cli ping
 ```
 
 ## 五十六、使用数据库事务向REDIS发送任务
+
+## 五十七、异步工作程序处理错误日志
+
