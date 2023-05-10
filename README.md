@@ -989,3 +989,5 @@ go get -u github.com/hibiken/asynq
 ```bash
 docker exec -it redis redis-cli ping
 ```
+
+## 五十六、使用数据库事务向REDIS发送任务
