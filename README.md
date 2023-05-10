@@ -1004,3 +1004,10 @@ go get github.com/jordan-wright/email
 ```
 
 ## 六十、跳过测试
+
+## 六十一、邮箱验证数据库设计与邮件发送
+
+迁移表
+```bash
+migrate create -ext sql -dir db/migration -seq add_verify_emails
+```

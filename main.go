@@ -18,6 +18,7 @@ import (
 	"github.com/grayjunzi/backend-master-class-golang/api"
 	db "github.com/grayjunzi/backend-master-class-golang/db/sqlc"
 	"github.com/grayjunzi/backend-master-class-golang/gapi"
+	"github.com/grayjunzi/backend-master-class-golang/mail"
 	"github.com/grayjunzi/backend-master-class-golang/pb"
 	"github.com/grayjunzi/backend-master-class-golang/util"
 	"github.com/grayjunzi/backend-master-class-golang/worker"
@@ -56,7 +57,7 @@ func main() {
 	}
 
 	taskDistibutor := worker.NewRedisTaskDistributor(redisOpt)
-	go runTaskProcessor(redisOpt, store)
+	go runTaskProcessor(config, redisOpt, store)
 	go runGatewayServer(config, store, taskDistibutor)
 	runGrpcServer(config, store, taskDistibutor)
 }
@@ -74,8 +75,9 @@ func runDBMigration(migrationURL string, dbSource string) {
 	log.Info().Msg("db migrated successfully")
 }
 
-func runTaskProcessor(redisOpt asynq.RedisClientOpt, store db.Store) {
-	taskProcessor := worker.NewRedisTaskProcessor(redisOpt, store)
+func runTaskProcessor(config util.Config, redisOpt asynq.RedisClientOpt, store db.Store) {
+	mailer := mail.NewGmailSender(config.EmailSenderName, config.EmailSenderAddress, config.EmailSenderPassword)
+	taskProcessor := worker.NewRedisTaskProcessor(redisOpt, store, mailer)
 	log.Info().Msg("start task processor")
 	err := taskProcessor.Start()
 	if err != nil {
