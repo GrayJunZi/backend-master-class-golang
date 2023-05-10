@@ -982,3 +982,10 @@ go get -u github.com/rs/zerolog/log
 ```bash
 go get -u github.com/hibiken/asynq
 ```
+
+## 五十五、集成异步工作程序
+
+查看redis是否启动正常
+```bash
+docker exec -it redis redis-cli ping
+```

@@ -50,4 +50,7 @@ protoc:
 evans:
 	evans --host localhost --port 9090 -r repl
 
-.PHONEY: network postgres createdb dropdb migrateup migratedown migrateup1 migratedown1 sqlc test server mock protoc evans
+redis:
+	docker run --name redis -p 6379:6379 -d redis:7-alpine
+
+.PHONEY: network postgres createdb dropdb migrateup migratedown migrateup1 migratedown1 sqlc test server mock protoc evans redis
