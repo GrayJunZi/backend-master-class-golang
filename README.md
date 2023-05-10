@@ -1002,3 +1002,5 @@ docker exec -it redis redis-cli ping
 ```bash
 go get github.com/jordan-wright/email
 ```
+
+## 六十、跳过测试
