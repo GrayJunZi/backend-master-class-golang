@@ -4,6 +4,9 @@ Backend Master Class [Golang + Postgres + Kubernetes + gRPC]
 ---
 了解有关后端Web开发的一切:Golang,Postgres,Redis,GRPC,Docker,Kubernetes,AWS,CI/CD
 
+> - 课程学习地址: [B站](https://www.bilibili.com/video/BV1dy4y1u7Sq/)
+> - 课程代码仓库：[Github](https://github.com/techschool/simplebank)
+
 ## 一、介绍
 
 创建一个简单银行项目，包含以下功能。
